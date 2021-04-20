@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app Project</title>
+</head>
+<body>
+    <input type="text" id="myin">
+    <button id="mybtn">fetch it</button>
+    <div id="info">
+    </div>
+  //  <script>
+        document.getElementById("mybtn").onclick =async ()=>{
+        let p=document.getElementById("myin").value;
+        
+        var data = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${p}&units=metric&appid=30374c567d19b8beb628ebd8c177aa75`)
+        var data2 = await data.json()
+                document.getElementById("info").innerHTML=`
+               <ul>
+               <li>city:${data2.name}</li>
+               <li>temp in Celsius:${data2.main.temp}</li>
+               <li>desc:${data2.weather[0].description}</li>
+               </ul>`
+                
+
+           // })
+        }
+    
+    //</script>
+
+    <script>
+        async function getsum(){
+            return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    res ("ok amazing!")
+                },3000)
+            })
+        }
+        async function display(){
+            try{
+                var x = await getsum();
+                console.log(x);
+            }catch(err){
+                console.log(err);
+            }
+        }
+        
+        display()
+        
+    </script>
+</body>
+</html>
